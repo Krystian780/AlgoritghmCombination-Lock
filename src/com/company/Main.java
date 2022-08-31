@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("change allowing creating pull request");
+        System.out.println("change allowing creating pull reques");
 	int digits = 5;
 	int [] currentLock = new int[]{8,2,1,9,5};
 	int [] correctCode = new int[]{6,4,7,2,3};
