@@ -1,57 +1,36 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("change allowing creating pull reques");
-	int digits = 5;
-	int [] currentLock = new int[]{8,2,1,9,5};
-	int [] correctCode = new int[]{6,4,7,2,3};
-        System.out.println(get(digits, currentLock, correctCode));
+        System.out.println(boyOrGirl("wjmzbr"));
     }
 
-    public static int get(int digits, int[] currentLock, int[] correctCode){
-        int howManyChanges = 0;
-        for(int x = 0; x < digits; x++){
-            int correctCode2 = correctCode[x];
-            int startingPointLooping = currentLock[x];
-            int leftCountTillFound = 0;
-            int rightCountTillFound = 0;
-            boolean whenFoundIteratingtoTheRightSetToFalse = true;
-            while(whenFoundIteratingtoTheRightSetToFalse){
-                if(startingPointLooping==correctCode2){
-                    whenFoundIteratingtoTheRightSetToFalse = false;
-                }
-                else{
-                    if(startingPointLooping==10){
-                        startingPointLooping = 1;
-                        rightCountTillFound++;
-                    }else{
-                        startingPointLooping++;
-                        rightCountTillFound++;
-                    }
-                }
-            }
-            startingPointLooping = currentLock[x];
-            boolean leftIterating = true;
-            while(leftIterating){
-                if(startingPointLooping==correctCode2){
-                    leftIterating = false;
-                }
-                else{
-                    if(startingPointLooping==0){
-                        startingPointLooping = 10;
-                        leftCountTillFound++;
-                    }else{
-                        startingPointLooping--;
-                        leftCountTillFound++;
-                    }
-                }
-            }
-            howManyChanges =  howManyChanges + (Math.min(leftCountTillFound,rightCountTillFound));
-        }
+    public static String boyOrGirl(String name){
+       String[] splitted = name.split("");
+       ArrayList<String> coverted = new ArrayList<>(Arrays.asList(splitted));
+       ArrayList<String> occured = new ArrayList<>();
+       int numberOfOccurences = 0;
+       for(int x = 0; x < coverted.size(); x++){
+           if(occured.isEmpty()){
+               occured.add(coverted.get(x));
+               numberOfOccurences++;
+           }else{
+               if(occured.contains(coverted.get(x))){
 
-        return howManyChanges-1;
+               }else{
+                   numberOfOccurences++;
+               }
+           }
+       }
+       if(numberOfOccurences%2==0){
+           return ("CHAT WITH HER!");
+       }else{
+           return ("I AM NOT A GAY");
+       }
     }
 
 }
