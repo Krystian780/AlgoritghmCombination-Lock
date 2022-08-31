@@ -1,36 +1,72 @@
 package com.company;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(boyOrGirl("wjmzbr"));
-    }
+        String[] flowers = { "R", "R", "R", "R", "R" };
+        List<String> flowerList = new ArrayList<>(Arrays.asList(flowers));
 
-    public static String boyOrGirl(String name){
-       String[] splitted = name.split("");
-       ArrayList<String> coverted = new ArrayList<>(Arrays.asList(splitted));
-       ArrayList<String> occured = new ArrayList<>();
-       int numberOfOccurences = 0;
-       for(int x = 0; x < coverted.size(); x++){
-           if(occured.isEmpty()){
-               occured.add(coverted.get(x));
-               numberOfOccurences++;
-           }else{
-               if(occured.contains(coverted.get(x))){
+        int lettersChanged = 0;
+        for(int x = 0; x < flowerList.size(); x++){
+            if(x==0){
+                if(flowerList.get(x).equalsIgnoreCase(flowerList.get(x+1))){
+                    if(flowerList.get(x+1).equalsIgnoreCase("G")
+                                || flowerList.get(x+1).equalsIgnoreCase("B")){
+                        flowerList.set(x, "R");
+                    }else if(flowerList.get(x+1).equalsIgnoreCase("F")
+                                || flowerList.get(x+1).equalsIgnoreCase("G")){
+                        flowerList.set(x, "B");
+                    }else{
+                        flowerList.set(x, "G");
+                    }
+                }
+            }
+            else if(x==flowerList.size()-1){
+                if(flowerList.get(x).equalsIgnoreCase(flowerList.get(x-1))){
+                    if(flowerList.get(x-1).equalsIgnoreCase("G")
+                            || flowerList.get(x-1).equalsIgnoreCase("B")){
+                        flowerList.set(x, "R");
+                    }else if(flowerList.get(x-1).equalsIgnoreCase("G")
+                            || flowerList.get(x-1).equalsIgnoreCase("R")){
+                        flowerList.set(x, "B");
+                    }else{
+                        flowerList.set(x, "G");
+                    }
+                }
+            }else{
+                if(flowerList.get(x).equalsIgnoreCase(flowerList.get(x-1)) ) {
+                    if (flowerList.get(x - 1).equalsIgnoreCase("G") && flowerList.get(x).equalsIgnoreCase("G")
+                            || flowerList.get(x - 1).equalsIgnoreCase("B") && flowerList.get(x).equalsIgnoreCase("B")) {
+                        flowerList.set(x, "R");
+                    } else if (flowerList.get(x - 1).equalsIgnoreCase("G") && flowerList.get(x).equalsIgnoreCase("G")
+                            || flowerList.get(x - 1).equalsIgnoreCase("R") && flowerList.get(x).equalsIgnoreCase("R")) {
+                        flowerList.set(x, "B");
+                    } else if (flowerList.get(x - 1).equalsIgnoreCase("B") && flowerList.get(x).equalsIgnoreCase("B")
+                            || flowerList.get(x - 1).equalsIgnoreCase("R") && flowerList.get(x).equalsIgnoreCase("R")) {
+                        flowerList.set(x, "G");
+                    }
+                }else if(flowerList.get(x).equalsIgnoreCase(flowerList.get(x+1))){
+                    if(flowerList.get(x+1).equalsIgnoreCase("G") && flowerList.get(x).equalsIgnoreCase("G")
+                            || flowerList.get(x+1).equalsIgnoreCase("B") && flowerList.get(x).equalsIgnoreCase("B") ){
+                        flowerList.set(x, "R");
+                    }else if(flowerList.get(x+1).equalsIgnoreCase("G") && flowerList.get(x).equalsIgnoreCase("G")
+                            || flowerList.get(x+1).equalsIgnoreCase("R") && flowerList.get(x).equalsIgnoreCase("R")){
+                        flowerList.set(x, "B");
+                    }else if(flowerList.get(x+1).equalsIgnoreCase("B") && flowerList.get(x).equalsIgnoreCase("B")
+                            || flowerList.get(x+1).equalsIgnoreCase("R") && flowerList.get(x).equalsIgnoreCase("R")){
+                        flowerList.set(x, "G");
+                    }
 
-               }else{
-                   numberOfOccurences++;
-               }
-           }
-       }
-       if(numberOfOccurences%2==0){
-           return ("CHAT WITH HER!");
-       }else{
-           return ("I AM NOT A GAY");
-       }
+                }
+            }
+        }
+        System.out.println(flowerList);
+
     }
 
 }
