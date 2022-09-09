@@ -3,30 +3,40 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(getAmountOfCalls(9999));
+        getPetya(15,6);
     }
 
-    public static int getAmountOfCalls(int digit){
-        int length = String.valueOf(digit).length();
-        int howManyTimes = 0;
-        int rest = 0;
-        if(length==1){
-            howManyTimes = digit-1;
-        }if(length>1){
-            char digits = (Integer.toString(digit).charAt(0));
-            howManyTimes = Character.getNumericValue(digits) -1;
+    public static void getPetya(int comers, int sheets){
+        int howManyRedSheets = 0;
+        int howManyGreenSheets = 0;
+        int howManyBlueSheets = 0;
+        int count1 = 0;
+        int count2 = 0;
+        int count3 = 0;
+        int howManyReedSheets2 = 1;
+        int howManyGreenSheets2 = 1;
+
+        while(comers!=count1){
+            count1++;
+            howManyRedSheets = howManyRedSheets + 2;
+            if(howManyRedSheets>=sheets){
+                howManyReedSheets2++;
+                howManyRedSheets = 0;
+            }
         }
 
-        if(length==1){
-            rest = 1;
-        }else if(length==2){
-            rest = 3;
-        }else if(length==3){
-            rest = 6;
-        }else{
-            rest = 10;
+        while(comers!=count2){
+            count2++;
+            howManyGreenSheets = howManyGreenSheets + 5;
+            if(howManyGreenSheets>=sheets){
+                howManyGreenSheets2++;
+                howManyGreenSheets = howManyGreenSheets2%5;
+            }
         }
 
-        return howManyTimes * 10 + rest;
+        System.out.println(howManyReedSheets2);
+        System.out.println(howManyGreenSheets2);
+
     }
+
 }
